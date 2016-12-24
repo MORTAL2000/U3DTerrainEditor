@@ -37,21 +37,9 @@ CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Timer.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Variant.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/CustomGeometry.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11GPUObject.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11RenderSurface.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture2D.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9GPUObject.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9RenderSurface.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture2D.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Drawable.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GPUObject.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GraphicsDefs.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLGPUObject.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLRenderSurface.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture2D.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/RenderSurface.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Terrain.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Texture.h
@@ -87,6 +75,9 @@ CMakeFiles/TEdit.dir/LoadBindings.cpp.o
  /home/jtippetts/Projects/U3DTerrainEditor/LoadBindings.cpp
  /home/jtippetts/Projects/U3DTerrainEditor/LoadBindings.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/angelscript.h
+ /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap.h
+ /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap16.h
+ /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrapmacros.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/lua.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/luaconf.h
 CMakeFiles/TEdit.dir/RegisterComponents.cpp.o
@@ -164,23 +155,11 @@ CMakeFiles/TEdit.dir/TerrainEdit.cpp.o
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Timer.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Variant.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/CustomGeometry.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11GPUObject.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11RenderSurface.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture2D.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9GPUObject.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9RenderSurface.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture2D.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Drawable.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GPUObject.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GraphicsDefs.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Light.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Material.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLGPUObject.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLRenderSurface.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture2D.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/RenderSurface.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Terrain.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Texture.h
@@ -217,13 +196,6 @@ CMakeFiles/TEdit.dir/TerrainEdit.cpp.o
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Scene/Node.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Scene/Serializable.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Scene/ValueAnimationInfo.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_config.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_error.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_platform.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_rwops.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_stdinc.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/begin_code.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/close_code.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Urho3D.h
 CMakeFiles/TEdit.dir/ThirdParty/ANL/Bindings/bind_anl.cpp.o
  /home/jtippetts/Projects/U3DTerrainEditor/ThirdParty/ANL/Bindings/bind_anl.cpp
@@ -309,13 +281,9 @@ CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Resource/ResourceCache.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Resource/ResourceEvents.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/angelscript.h
+ /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap.h
+ /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap16.h
+ /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrapmacros.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/lua.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/luaconf.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_config.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_error.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_platform.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_rwops.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_stdinc.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/begin_code.h
- /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/close_code.h
  /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Urho3D.h

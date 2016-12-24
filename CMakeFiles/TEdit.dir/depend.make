@@ -36,21 +36,9 @@ CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Buil
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Timer.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Variant.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/CustomGeometry.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11GPUObject.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11RenderSurface.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture2D.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9GPUObject.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9RenderSurface.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture2D.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Drawable.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GPUObject.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GraphicsDefs.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLGPUObject.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLRenderSurface.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture.h
-CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture2D.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/RenderSurface.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Terrain.h
 CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Texture.h
@@ -86,6 +74,9 @@ CMakeFiles/TEdit.dir/BindTerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Buil
 CMakeFiles/TEdit.dir/LoadBindings.cpp.o: LoadBindings.cpp
 CMakeFiles/TEdit.dir/LoadBindings.cpp.o: LoadBindings.h
 CMakeFiles/TEdit.dir/LoadBindings.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/angelscript.h
+CMakeFiles/TEdit.dir/LoadBindings.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap.h
+CMakeFiles/TEdit.dir/LoadBindings.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap16.h
+CMakeFiles/TEdit.dir/LoadBindings.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrapmacros.h
 CMakeFiles/TEdit.dir/LoadBindings.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/lua.h
 CMakeFiles/TEdit.dir/LoadBindings.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/luaconf.h
 
@@ -163,23 +154,11 @@ CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/in
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Timer.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Core/Variant.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/CustomGeometry.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11GPUObject.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11RenderSurface.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D11/D3D11Texture2D.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9GPUObject.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9RenderSurface.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Direct3D9/D3D9Texture2D.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Drawable.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GPUObject.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/GraphicsDefs.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Light.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Material.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLGPUObject.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLRenderSurface.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/OpenGL/OGLTexture2D.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/RenderSurface.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Terrain.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Graphics/Texture.h
@@ -216,13 +195,6 @@ CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/in
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Scene/Node.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Scene/Serializable.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Scene/ValueAnimationInfo.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_config.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_error.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_platform.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_rwops.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_stdinc.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/begin_code.h
-CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/close_code.h
 CMakeFiles/TEdit.dir/TerrainEdit.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Urho3D.h
 
 CMakeFiles/TEdit.dir/ThirdParty/ANL/Bindings/bind_anl.cpp.o: ThirdParty/ANL/Bindings/bind_anl.cpp
@@ -308,14 +280,10 @@ CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/i
 CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Resource/ResourceCache.h
 CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Resource/ResourceEvents.h
 CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/angelscript.h
+CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap.h
+CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrap16.h
+CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/AngelScript/wrapmacros.h
 CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/lua.h
 CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/Lua/luaconf.h
-CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_config.h
-CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_error.h
-CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_platform.h
-CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_rwops.h
-CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/SDL_stdinc.h
-CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/begin_code.h
-CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/ThirdParty/SDL/close_code.h
 CMakeFiles/TEdit.dir/Urho3DPlayer.cpp.o: /home/jtippetts/Projects/Urho3D/Build/include/Urho3D/Urho3D.h
 
