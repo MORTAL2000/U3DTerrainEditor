@@ -41,6 +41,8 @@ if (CMAKE_GENERATOR STREQUAL Xcode)
     set (XCODE TRUE)
 elseif (CMAKE_GENERATOR STREQUAL Ninja)
     set (NINJA TRUE)
+elseif (CMAKE_GENERATOR MATCHES Visual)
+    set (VS TRUE)
 endif ()
 
 # Rightfully we could have performed this inside a CMake/iOS toolchain file but we don't have one nor need for one for now
@@ -334,8 +336,10 @@ if ($ENV{COVERITY_SCAN_BRANCH})
 endif ()
 
 # Enable/disable SIMD instruction set for STB image (do it here instead of in the STB CMakeLists.txt because the header files are exposed to Urho3D library user)
-if (NEON AND NOT XCODE)
-    add_definitions (-DSTBI_NEON)       # Cannot define it directly for Xcode due to universal binary support, we define it in the setup_target() macro instead for Xcode
+if (NEON)
+    if (NOT XCODE)
+        add_definitions (-DSTBI_NEON)   # Cannot define it directly for Xcode due to universal binary support, we define it in the setup_target() macro instead for Xcode
+    endif ()
 elseif (NOT URHO3D_SSE)
     add_definitions (-DSTBI_NO_SIMD)    # GCC/Clang/MinGW will switch this off automatically except MSVC, but no harm to make it explicit for all
 endif ()
@@ -854,16 +858,22 @@ macro (enable_pch HEADER_PATHNAME)
         if (MSVC)
             get_filename_component (NAME_WE ${HEADER_FILENAME} NAME_WE)
             if (TARGET ${TARGET_NAME})
+                if (VS)
+                    # VS is multi-config, the exact path is only known during actual build time based on effective build config
+                    set (PCH_PATHNAME "$(IntDir)${PCH_FILENAME}")
+                else ()
+                    set (PCH_PATHNAME ${CMAKE_CURRENT_BINARY_DIR}/${PCH_FILENAME})
+                endif ()
                 foreach (FILE ${SOURCE_FILES})
                     if (FILE MATCHES \\.${EXT}$)
                         if (FILE MATCHES ${NAME_WE}\\.${EXT}$)
                             # Precompiling header file
-                            set_property (SOURCE ${FILE} APPEND_STRING PROPERTY COMPILE_FLAGS " /Fp$(IntDir)${PCH_FILENAME} /Yc${HEADER_FILENAME}")     # Need a leading space for appending
+                            set_property (SOURCE ${FILE} APPEND_STRING PROPERTY COMPILE_FLAGS " /Fp${PCH_PATHNAME} /Yc${HEADER_FILENAME}")     # Need a leading space for appending
                         else ()
                             # Using precompiled header file
                             get_property (NO_PCH SOURCE ${FILE} PROPERTY NO_PCH)
                             if (NOT NO_PCH)
-                                set_property (SOURCE ${FILE} APPEND_STRING PROPERTY COMPILE_FLAGS " /Fp$(IntDir)${PCH_FILENAME} /Yu${HEADER_FILENAME} /FI${HEADER_FILENAME}")
+                                set_property (SOURCE ${FILE} APPEND_STRING PROPERTY COMPILE_FLAGS " /Fp${PCH_PATHNAME} /Yu${HEADER_FILENAME} /FI${HEADER_FILENAME}")
                             endif ()
                         endif ()
                     endif ()
@@ -880,8 +890,11 @@ macro (enable_pch HEADER_PATHNAME)
                 endif ()
                 list (FIND SOURCE_FILES ${PATH}${${LANG}_FILENAME} ${LANG}_FILENAME_FOUND)
                 if (${LANG}_FILENAME_FOUND STREQUAL -1)
-                    file (WRITE ${CMAKE_CURRENT_BINARY_DIR}/${${LANG}_FILENAME} "// This is a generated file. DO NOT EDIT!\n\n#include \"${HEADER_FILENAME}\"")
-                    list (APPEND SOURCE_FILES ${${LANG}_FILENAME})
+                    if (NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/${${LANG}_FILENAME})
+                        # Only generate it once so that its timestamp is not touched unnecessarily
+                        file (WRITE ${CMAKE_CURRENT_BINARY_DIR}/${${LANG}_FILENAME} "// This is a generated file. DO NOT EDIT!\n\n#include \"${HEADER_FILENAME}\"")
+                    endif ()
+                    list (INSERT SOURCE_FILES 0 ${${LANG}_FILENAME})
                 endif ()
             endif ()
         elseif (XCODE)
@@ -1007,12 +1020,15 @@ macro (setup_target)
         if (ATTRIBUTE_ALREADY_SET EQUAL -1)
             list (APPEND TARGET_PROPERTIES XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH $<$<CONFIG:Debug>:YES>)
         endif ()
-        if (URHO3D_SSE OR NEON)
-            # When targeting x86 with SSE enabled; or when targeting iOS with NEON enabled as universal binary includes iPhoneSimulator x86 arch too
-            # Clang by default always enable SSE instruction set for both i386 and x86_64 ABIs, so we only need to take care of special compiler flags/defines for NEON
-            list (APPEND TARGET_PROPERTIES XCODE_ATTRIBUTE_OTHER_CFLAGS[sdk=iphoneos*] "-DSTBI_NEON $(OTHER_CFLAGS)")
-            list (APPEND TARGET_PROPERTIES XCODE_ATTRIBUTE_OTHER_CPLUSPLUSFLAGS[sdk=iphoneos*] "-DSTBI_NEON $(OTHER_CPLUSPLUSFLAGS)")
-        else ()
+        if (NEON)
+            if (IOS)
+                set (SDK iphoneos)
+            elseif (TVOS)
+                set (SDK appletvos)
+            endif ()
+            list (APPEND TARGET_PROPERTIES XCODE_ATTRIBUTE_OTHER_CFLAGS[sdk=${SDK}*] "-DSTBI_NEON $(OTHER_CFLAGS)")
+            list (APPEND TARGET_PROPERTIES XCODE_ATTRIBUTE_OTHER_CPLUSPLUSFLAGS[sdk=${SDK}*] "-DSTBI_NEON $(OTHER_CPLUSPLUSFLAGS)")
+        elseif (NOT URHO3D_SSE)
             # Nullify the Clang default so that it is consistent with GCC
             list (APPEND TARGET_PROPERTIES XCODE_ATTRIBUTE_OTHER_CFLAGS[arch=i386] "-mno-sse $(OTHER_CFLAGS)")
             list (APPEND TARGET_PROPERTIES XCODE_ATTRIBUTE_OTHER_CPLUSPLUSFLAGS[arch=i386] "-mno-sse $(OTHER_CPLUSPLUSFLAGS)")
@@ -1023,19 +1039,17 @@ macro (setup_target)
         unset (TARGET_PROPERTIES)
     endif ()
 
-    # Workaround CMake/Xcode generator bug where it always appends '/build' path element to SYMROOT attribute and as such the items in Products are always rendered as red as if they are not yet built
-    if (XCODE AND NOT CMAKE_PROJECT_NAME MATCHES ^Urho3D-ExternalProject-)
-        file (MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build)
-        get_target_property (LOCATION ${TARGET_NAME} LOCATION)
-        string (REGEX REPLACE "^.*\\$\\(CONFIGURATION\\)" $(CONFIGURATION) SYMLINK ${LOCATION})
-        get_filename_component (DIRECTORY ${SYMLINK} PATH)
-        add_custom_command (TARGET ${TARGET_NAME} POST_BUILD
-            COMMAND mkdir -p ${DIRECTORY} && ln -sf $<TARGET_FILE:${TARGET_NAME}> ${DIRECTORY}/$<TARGET_FILE_NAME:${TARGET_NAME}>
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/build)
-    endif ()
-    # Workaround to avoid technical error due to Travis CI build time limit
-    if (DEFINED ENV{TRAVIS})
-        add_custom_command (TARGET ${TARGET_NAME} POST_BUILD COMMAND rake ci_timeup WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+    # Workaround CMake/Xcode generator bug where it always appends '/build' path element to SYMROOT attribute and as such the items in Products are always rendered as red in the Xcode IDE as if they are not yet built
+    if (NOT DEFINED ENV{TRAVIS})
+        if (XCODE AND NOT CMAKE_PROJECT_NAME MATCHES ^Urho3D-ExternalProject-)
+            file (MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+            get_target_property (LOCATION ${TARGET_NAME} LOCATION)
+            string (REGEX REPLACE "^.*\\$\\(CONFIGURATION\\)" $(CONFIGURATION) SYMLINK ${LOCATION})
+            get_filename_component (DIRECTORY ${SYMLINK} PATH)
+            add_custom_command (TARGET ${TARGET_NAME} POST_BUILD
+                COMMAND mkdir -p ${DIRECTORY} && ln -sf $<TARGET_FILE:${TARGET_NAME}> ${DIRECTORY}/$<TARGET_FILE_NAME:${TARGET_NAME}>
+                WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/build)
+        endif ()
     endif ()
 endmacro ()
 
@@ -1791,7 +1805,7 @@ else ()
     # Ensure the output directory exist before creating the symlinks
     file (MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     # Create symbolic links in the build tree
-    foreach (I CoreData Data)
+    foreach (I Autoload CoreData Data)
         if (NOT EXISTS ${CMAKE_BINARY_DIR}/bin/${I})
             create_symlink (${CMAKE_SOURCE_DIR}/bin/${I} ${CMAKE_BINARY_DIR}/bin/${I} FALLBACK_TO_COPY)
         endif ()

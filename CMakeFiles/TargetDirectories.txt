@@ -1,0 +1,2 @@
+/home/jtippetts/Projects/U3DTerrainEditor/ThirdParty/ANL/CMakeFiles/ANL.dir
+/home/jtippetts/Projects/U3DTerrainEditor/CMakeFiles/TEdit.dir

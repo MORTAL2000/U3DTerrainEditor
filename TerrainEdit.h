@@ -18,7 +18,7 @@
 #include "ThirdParty/ANL/VM/coordinate.h"
 #include "ThirdParty/ANL/templates/tarrays.h"
 #include "ThirdParty/ANL/templates/tarray1.h"
-#include "ThirdParty/ANL/imaging/imaging.h"
+#include "ThirdParty/ANL/Imaging/imaging.h"
 
 using namespace Urho3D;
 using namespace anl;
