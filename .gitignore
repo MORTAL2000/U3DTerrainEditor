@@ -5,6 +5,7 @@ bin/Data
 bin/CoreData
 bin/Extra
 bin/*.png
+bin/TEdit
 !bin/TerrainEditorData/*.png
 bin/TerrainEditorData/Save
 *.bat
