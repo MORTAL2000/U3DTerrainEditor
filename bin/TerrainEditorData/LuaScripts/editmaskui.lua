@@ -147,7 +147,7 @@ function EditMaskUI:Update(dt)
 		
 		if input:GetMouseButtonDown(MOUSEB_LEFT) and ui:GetElementAt(mousepos.x, mousepos.y)==nil then
 			local gx,gz=ground.x,ground.z
-			ApplyMaskBrush(terrain,hmap,mask,gx,gz,self.radius,self.max,self.power,self.hardness,dt) masktex:SetData(mask)
+			ApplyMaskBrush(TerrainState.terrain,TerrainState.hmap,TerrainState.mask,gx,gz,self.radius,self.max,self.power,self.hardness,dt) TerrainState.masktex:SetData(TerrainState.mask)
 		end
 	end
 	

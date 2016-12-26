@@ -158,7 +158,7 @@ function EditHeightUI:Update(dt)
 		
 		if input:GetMouseButtonDown(MOUSEB_LEFT) and ui:GetElementAt(mousepos.x, mousepos.y)==nil then
 			if input:GetQualifierDown(QUAL_CTRL) then
-				local norm=WorldToNormalized(hmap,terrain,ground)
+				local norm=WorldToNormalized(TerrainState.hmap,TerrainState.terrain,ground)
 				local col=hmap:GetPixelBilinear(norm.x,1-norm.y)
 				local ht=0
 				if hmap.components==1 then ht=col.r
@@ -169,7 +169,7 @@ function EditHeightUI:Update(dt)
 				self:SetHeight(ht)
 			else
 				local gx,gz=ground.x,ground.z
-				ApplyHeightBrush(terrain,hmap,mask,gx,gz,self.radius, self.max, self.power, self.hardness, self.usemask, dt) terrain:ApplyHeightMap()
+				ApplyHeightBrush(TerrainState.terrain,TerrainState.hmap,TerrainState.mask,gx,gz,self.radius, self.max, self.power, self.hardness, self.usemask, dt) TerrainState.terrain:ApplyHeightMap()
 			end
 		end
 	end

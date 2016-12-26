@@ -11,31 +11,31 @@ return
 		
 		local layer=ops["Layer"]
 		if layer==0 then
-			blend1:Clear(Color(1,0,0,0))
-			blend2:Clear(Color(0,0,0,0))
+			TerrainState.blend1:Clear(Color(1,0,0,0))
+			TerrainState.blend2:Clear(Color(0,0,0,0))
 		elseif layer==1 then
-			blend1:Clear(Color(0,1,0,0))
-			blend2:Clear(Color(0,0,0,0))
+			TerrainState.blend1:Clear(Color(0,1,0,0))
+			TerrainState.blend2:Clear(Color(0,0,0,0))
 		elseif layer==2 then
-			blend1:Clear(Color(0,0,1,0))
-			blend2:Clear(Color(0,0,0,0))
+			TerrainState.blend1:Clear(Color(0,0,1,0))
+			TerrainState.blend2:Clear(Color(0,0,0,0))
 		elseif layer==3 then
-			blend1:Clear(Color(0,0,0,1))
-			blend2:Clear(Color(0,0,0,0))
+			TerrainState.blend1:Clear(Color(0,0,0,1))
+			TerrainState.blend2:Clear(Color(0,0,0,0))
 		elseif layer==4 then
-			blend1:Clear(Color(0,0,0,0))
-			blend2:Clear(Color(1,0,0,0))
+			TerrainState.blend1:Clear(Color(0,0,0,0))
+			TerrainState.blend2:Clear(Color(1,0,0,0))
 		elseif layer==5 then
-			blend1:Clear(Color(0,0,0,0))
-			blend2:Clear(Color(0,1,0,0))
+			TerrainState.blend1:Clear(Color(0,0,0,0))
+			TerrainState.blend2:Clear(Color(0,1,0,0))
 		elseif layer==6 then
-			blend1:Clear(Color(0,0,0,0))
-			blend2:Clear(Color(0,0,1,0))
+			TerrainState.blend1:Clear(Color(0,0,0,0))
+			TerrainState.blend2:Clear(Color(0,0,1,0))
 		else
-			blend1:Clear(Color(0,0,0,0))
-			blend2:Clear(Color(0,0,0,1))
+			TerrainState.blend1:Clear(Color(0,0,0,0))
+			TerrainState.blend2:Clear(Color(0,0,0,1))
 		end
-		blendtex1:SetData(blend1, false)
-		blendtex2:SetData(blend2, false)
+		TerrainState.blendtex1:SetData(TerrainState.blend1, false)
+		TerrainState.blendtex2:SetData(TerrainState.blend2, false)
 	end
 }

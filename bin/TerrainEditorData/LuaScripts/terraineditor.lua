@@ -13,6 +13,8 @@ require "LuaScripts/filterui"
 require "LuaScripts/saveloadui"
 require "LuaScripts/terrainselectui"
 
+require 'LuaScripts/Class'
+
 function HtToRG(ht)
 	local expht=math.floor(ht*255)
 	local rm=ht*255-expht
@@ -29,9 +31,9 @@ function ColorToHeight(col)
 	return (col.r+col.g/256)
 end
 
-
-
-
+TerrainState=
+{
+}
 
 
 function Start()
@@ -82,7 +84,7 @@ function CreateScene()
     --light.shadowBias = BiasParameters(0.00025, 0.5)
     --light.shadowCascade = CascadeParameters(10.0, 50.0, 200.0, 0.0, 0.8)
     light.specularIntensity = 0.01;
-    light.color = Color(0.9,0.8,0.7);
+    light.color = Color(1.2,1.2,1.2);
 	
 	--[[lightNode = scene_:CreateChild("DirectionalLight")
     lightNode.direction = Vector3(-1.2, -1.0, -1.6)
@@ -100,72 +102,12 @@ function CreateScene()
     skybox.model = cache:GetResource("Model", "Models/Box.mdl")
     skybox.material = cache:GetResource("Material", "Materials/Skybox.xml")
 
-    -- Create heightmap terrain
-    local terrainNode = scene_:CreateChild("Terrain")
-    terrainNode.position = Vector3(0.0, 0.0, 0.0)
-    terrain = terrainNode:CreateComponent("Terrain")
-    terrain.patchSize = 64
-    terrain.spacing = Vector3(1, 0.1, 1) -- Spacing between vertices and vertical resolution of the height map
-    terrain.smoothing = true
-	hmap=Image:new(context)
-	hmap:SetSize(1025,1025,3)
-	hmap:Clear(Color(0.0,0,0,0))
-    terrain.heightMap = hmap
-	terrain.castShadows=true
-	
-	
-    --terrain.material = cache:GetResource("Material", "Materials/TerrainEdit8.xml")
-	terrain.material = cache:GetResource("Material", "Materials/TerrainEdit8Triplanar.xml")
-	print(graphics:GetApiName())
-	
-	
-    -- The terrain consists of large triangles, which fits well for occlusion rendering, as a hill can occlude all
-    -- terrain patches and other objects behind it
-    terrain.occluder = false
-	
-	mask=Image(context)
-	masktex=Texture2D:new(context)
-	--masktex:SetSize(0,0,0,TEXTURE_DYNAMIC)
-	mask:SetSize(1024,1024,3)
-	mask:Clear(Color(1,0,0))
-	masktex:SetData(mask, false)
-	terrain:GetMaterial():SetTexture(4,masktex)
-	
-	hmap:Clear(Color(0,0,0))
-	--terrain:SetSmoothing(false)
-	print("Components: "..hmap:GetComponents())
-	blendtex1=Texture2D:new(context)
-	--blendtex1:SetSize(0,0,0,TEXTURE_DYNAMIC)
-	terrain:GetMaterial():SetTexture(0,blendtex1)
-	
-	blendtex2=Texture2D:new(context)
-	--blendtex2:SetSize(0,0,0,TEXTURE_DYNAMIC)
-	terrain:GetMaterial():SetTexture(1,blendtex2)
-	
-	blend1=Image(context)
-	blend1:SetSize(1024,1024,4)
-	blend1:Clear(Color(1,0,0,0))
-	blendtex1:SetData(blend1, false)
-	
-	blend2=Image(context)
-	blend2:SetSize(1024,1024,4)
-	blend2:Clear(Color(0,0,0,0))
-	blendtex2:SetData(blend2, false)
-	
-	local api=graphics:GetApiName()
-	if api=="D3D9" then
-		comptex1=Texture2D:new(context)
-		comptex2=Texture2D:new(context)
-		img1=cache:GetResource("Image", "Textures/diff.png")
-		img2=cache:GetResource("Image", "Textures/normal.png")
-		comptex1:SetData(img1, false)
-		comptex2:SetData(img2, false)
-		terrain:GetMaterial():SetTexture(2,comptex1)
-		terrain:GetMaterial():SetTexture(3,comptex2)
-	end
-
+    
 	
 	terrainui=scene_:CreateScriptObject("TerrainEditUI")
+	
+	terrainui:NewTerrain(1025,1025,2048,2048,true,false)
+	terrainui:BuildUI()
 	filterui=scene_:CreateScriptObject("FilterUI")
 	saveloadui=scene_:CreateScriptObject("SaveLoadUI")
 	--terrainselectui=scene_:CreateScriptObject("TerrainSelectUI")
@@ -217,7 +159,7 @@ function CreateScene()
 		return k
 	end
 
-	xdistort=CArray2Dd(blend1:GetWidth(), blend1:GetHeight())
+	--[[xdistort=CArray2Dd(blend1:GetWidth(), blend1:GetHeight())
 	local xdk=distortKernel(6, 64, 1234)
 	map2D(SEAMLESS_NONE, xdistort, xdk, SMappingRanges(0,1,0,1,0,1), 0, xdk:lastIndex())
 	xdistort:scaleToRange(-1,1)
@@ -225,7 +167,7 @@ function CreateScene()
 	ydistort=CArray2Dd(blend1:GetWidth(), blend1:GetHeight())
 	local ydk=distortKernel(6, 64, 1234)
 	map2D(SEAMLESS_NONE, ydistort, ydk, SMappingRanges(0,1,0,1,0,1), 0, ydk:lastIndex())
-	ydistort:scaleToRange(0,1)
+	ydistort:scaleToRange(0,1)]]
 end
 
 function CreateInstructions()

@@ -147,7 +147,7 @@ function SmoothHeightUI:Update(dt)
 		
 		if input:GetMouseButtonDown(MOUSEB_LEFT) and ui:GetElementAt(mousepos.x, mousepos.y)==nil then
 			local gx,gz=ground.x,ground.z
-			ApplySmoothBrush(terrain,hmap,mask,gx,gz,self.radius, self.max, self.power, self.hardness, self.usemask, dt) terrain:ApplyHeightMap()
+			ApplySmoothBrush(TerrainState.terrain,TerrainState.hmap,TerrainState.mask,gx,gz,self.radius, self.max, self.power, self.hardness, self.usemask, dt) TerrainState.terrain:ApplyHeightMap()
 		end
 	end
 	

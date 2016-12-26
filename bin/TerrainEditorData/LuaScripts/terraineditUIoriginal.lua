@@ -22,7 +22,7 @@ function CreateCursor()
 
 end
 
-function TerrainEditUI:Start()
+function TerrainEditUI:BuildUI()
 	self.heightbrush=scene_:CreateScriptObject("EditHeightUI")
 	self.blendbrush=scene_:CreateScriptObject("TerrainSelectUI")
 	self.smoothbrush=scene_:CreateScriptObject("SmoothHeightUI")
@@ -62,20 +62,94 @@ function TerrainEditUI:Start()
 	waypoints={}
 end
 
+function TerrainEditUI:Start()
+	
+end
+
+function TerrainEditUI:NewTerrain(width, height, blendwidth, blendheight, triplanar, smoothing)
+	if TerrainState.terrainNode then TerrainState.terrainNode:Remove() end
+	
+	TerrainState.terrainNode=scene_:CreateChild()
+	TerrainState.terrain=TerrainState.terrainNode:CreateComponent("Terrain")
+	TerrainState.terrain.patchSize=64
+	TerrainState.terrain.spacing=Vector3(1,0.5,1)
+	TerrainState.terrain.smoothing=true
+	
+	if TerrainState.hmap then TerrainState.hmap:delete() end
+	TerrainState.hmap=Image:new(context)
+	TerrainState.hmap:SetSize(width, height, 3)
+	TerrainState.hmap:Clear(Color(0,0,0))
+	TerrainState.terrain.heightMap=TerrainState.hmap
+	TerrainState.terrain.castShadows=true
+	
+	self:SetMaterial(blendwidth, blendheight, triplanar, smoothing)
+end
+
+function TerrainEditUI:SetMaterial(blendwidth, blendheight, triplanar, smoothing)
+	if triplanar then
+		if smoothing then
+			TerrainState.terrainMaterial=cache:GetResource("Material", "Materials/TerrainEdit8TriplanarSmooth.xml")
+		else
+			TerrainState.terrainMaterial=cache:GetResource("Material", "Materials/TerrainEdit8Triplanar.xml")
+		end
+	else
+		if smoothing then
+			TerrainState.terrainMaterial=cache:GetResource("Material", "Materials/TerrainEdit8Smooth.xml")
+		else
+			TerrainState.terrainMaterial=cache:GetResource("Material", "Materials/TerrainEdit8.xml")
+		end
+	end
+	
+	if TerrainState.blendtex1 then TerrainState.blendtex1:delete() end
+	if TerrainState.blendtex2 then TerrainState.blendtex2:delete() end
+	if TerrainState.blend1 then TerrainState.blend1:delete() end
+	if TerrainState.blend2 then TerrainState.blend2:delete() end
+	
+	TerrainState.blend1=Image:new(context)
+	TerrainState.blend1:SetSize(blendwidth, blendheight, 4)
+	TerrainState.blend2=Image:new(context)
+	TerrainState.blend2:SetSize(blendwidth, blendheight, 4)
+	TerrainState.blendtex1=Texture2D:new(context)
+	TerrainState.blendtex2=Texture2D:new(context)
+	TerrainState.blend1:Clear(Color(1,0,0,0))
+	TerrainState.blend2:Clear(Color(0,0,0,0))
+	TerrainState.blendtex1:SetData(TerrainState.blend1, false)
+	TerrainState.blendtex2:SetData(TerrainState.blend2, false)
+	
+	if TerrainState.masktex then TerrainState.masktex:delete() end
+	if TerrainState.mask then TerrainState.mask:delete() end
+	
+	TerrainState.mask=Image:new(context)
+	TerrainState.mask:SetSize(blendwidth, blendheight, 3)
+	TerrainState.masktex=Texture2D:new(context)
+	TerrainState.mask:Clear(Color(1,1,1))
+	TerrainState.masktex:SetData(TerrainState.mask, false)
+	
+	if TerrainState.terrainMaterial then
+		TerrainState.terrainMaterial:SetTexture(0, TerrainState.blendtex1)
+		TerrainState.terrainMaterial:SetTexture(1, TerrainState.blendtex2)
+		TerrainState.terrainMaterial:SetTexture(4, TerrainState.masktex)
+		
+		if TerrainState.terrain then
+			TerrainState.terrain.material=TerrainState.terrainMaterial
+		end
+	end
+end
+
 function TerrainEditUI:UpdateWaypointVis()
 	--print("1")
 	self.waypointpreview:Clear()
 	self.waypointpreview.occludee=false
 	self.waypointpreview:SetNumGeometries(1)
 	local c
-	local spacing=terrain:GetSpacing()
+	local spacing=TerrainState.terrain:GetSpacing()
 	local plist=RasterVertexList()
 	for _,c in ipairs(waypoints) do
 		local pos=c.position
-		local norm=WorldToNormalized(hmap,terrain,pos)
-		local hx=math.floor(norm.x*hmap:GetWidth())
-		local hy=math.floor(norm.y*hmap:GetHeight())
-		local ht=GetHeightValue(hmap,hx,(hmap:GetHeight()-1)-hy)
+		local norm=WorldToNormalized(TerrainState.hmap,TerrainState.terrain,pos)
+		local hx=math.floor(norm.x*TerrainState.hmap:GetWidth())
+		local hy=math.floor(norm.y*TerrainState.hmap:GetHeight())
+		local ht=GetHeightValue(TerrainState.hmap,hx,(TerrainState.hmap:GetHeight()-1)-hy)
 		plist:push_back(RasterVertex(hx,hy,ht))
 	end
 	
@@ -92,9 +166,9 @@ function TerrainEditUI:UpdateWaypointVis()
 	self.waypointpreview:SetDynamic(true)
 	
 	function buildVertex(rv)
-		local nx=rv.x_/hmap:GetWidth()
-		local ny=rv.y_/hmap:GetHeight()
-		local v=NormalizedToWorld(hmap,terrain,Vector2(nx,ny))
+		local nx=rv.x_/TerrainState.hmap:GetWidth()
+		local ny=rv.y_/TerrainState.hmap:GetHeight()
+		local v=NormalizedToWorld(TerrainState.hmap,TerrainState.terrain,Vector2(nx,ny))
 		v.y=(rv.val_*255)*spacing.y
 		return v
 	end
@@ -127,7 +201,7 @@ function TerrainEditUI:AddWaypoint(groundx, groundz)
 	model.material=cache:GetResource("Material", "Materials/Flag.xml")
 	model.model=cache:GetResource("Model", "Models/Flag.mdl")
 	model.castShadows=false
-	local ht=terrain:GetHeight(Vector3(groundx,0,groundz))
+	local ht=TerrainState.terrain:GetHeight(Vector3(groundx,0,groundz))
 	waynode.position=Vector3(groundx, ht, groundz)
 	waynode.scale=Vector3(0.25,0.25,0.25)
 	table.insert(waypoints, waynode)
@@ -198,7 +272,7 @@ function TerrainEditUI:Update(dt)
 	
 	local c
 	for _,c in ipairs(waypoints) do
-		local ht=terrain:GetHeight(Vector3(c.position.x,0,c.position.z))
+		local ht=TerrainState.terrain:GetHeight(Vector3(c.position.x,0,c.position.z))
 		c.position=Vector3(c.position.x,ht,c.position.z)
 	end
 	self:UpdateWaypointVis()
@@ -216,8 +290,8 @@ function TerrainEditUI:HandleButtonPress(eventType, eventData)
 	elseif name=="MaskButton" then
 		self:ActivateMaskBrush()
 	elseif name=="ClearMask" then
-		mask:Clear(Color(1,1,1))
-		masktex:SetData(mask)
+		TerrainState.mask:Clear(Color(1,1,1))
+		TerrainState.masktex:SetData(TerrainState.mask)
 	end
 end
 

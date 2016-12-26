@@ -200,7 +200,7 @@ function TerrainSelectUI:Update(dt)
 		
 		if input:GetMouseButtonDown(MOUSEB_LEFT) and ui:GetElementAt(mousepos.x, mousepos.y)==nil then
 			local gx,gz=ground.x,ground.z
-			ApplyBlendBrush8(terrain,hmap,blend1,blend2,mask,gx,gz,self.radius,self.max,self.power,self.hardness,self.layer-1,self.usemask,dt) blendtex1:SetData(blend1) blendtex2:SetData(blend2)
+			ApplyBlendBrush8(TerrainState.terrain,TerrainState.hmap,TerrainState.blend1,TerrainState.blend2,TerrainState.mask,gx,gz,self.radius,self.max,self.power,self.hardness,self.layer-1,self.usemask,dt)TerrainState. blendtex1:SetData(TerrainState.blend1) TerrainState.blendtex2:SetData(TerrainState.blend2)
 		end
 	end
 	
